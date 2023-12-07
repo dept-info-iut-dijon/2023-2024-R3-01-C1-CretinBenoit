@@ -8,10 +8,8 @@ Class MainController{
         $PM = new PokemonManager();
 
         $listPokemon = $PM->getAll();
-        $existe = $PM->getById(1);
-        $existePas = $PM->getById(3);
 
-        $indexView->generer(['listPokemon' => $listPokemon, 'existe' => $existe, 'existePas' => $existePas]);
+        $indexView->generer(['listPokemon' => $listPokemon]);
     }
 }
 ?>

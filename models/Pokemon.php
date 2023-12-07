@@ -21,7 +21,7 @@ class Pokemon
     }
     public function setNomEspece(string $nom)
     {
-        $this->nomEscpece = $nom;
+        $this->nomEspece = $nom;
     }
 
     // Attribut, Getter et Setter pour la description du Pokemon

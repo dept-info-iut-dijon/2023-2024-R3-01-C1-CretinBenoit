@@ -16,7 +16,14 @@ class PokemonManager extends Model
         {
             $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
-        return $res;
+        $result = [];
+        $i = 0;
+        while(isset($res[$i]))
+        {
+            $result[$i] = new Pokemon($res[$i]);
+            $i = $i + 1;
+        }
+        return $result;
     }
 
     /**
