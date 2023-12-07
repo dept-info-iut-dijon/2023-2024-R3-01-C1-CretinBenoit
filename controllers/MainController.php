@@ -11,5 +11,10 @@ Class MainController{
 
         $indexView->generer(['listPokemon' => $listPokemon]);
     }
+
+    public function Search() : void {
+        $searchView = new View('Search');
+        $searchView->generer([]);
+    }
 }
 ?>

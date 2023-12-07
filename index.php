@@ -1,6 +1,7 @@
 <?php
     require_once("controllers/MainController.php");
+    require_once("controllers/Router/Router.php");
 
-    $MC = new MainController();
-    $MC->Index();
+    $routeur = new Router();
+    $routeur->routing($_GET, $_POST);
 ?>
