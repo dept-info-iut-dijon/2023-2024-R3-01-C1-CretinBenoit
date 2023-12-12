@@ -18,7 +18,7 @@ Class RouteAddPokemon extends Route
 
     public function post($params = [])
     {
-        
+        $this->controller->addPokemon($params);
     }
 }
 ?>

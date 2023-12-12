@@ -21,16 +21,16 @@ Class Router
     {
         $this->ctrlList = [];
         $this->ctrlList["main"] = new MainController();
-        $this->ctrlList["add-pokemon"] = new PokemonController();
+        $this->ctrlList["pokemon"] = new PokemonController();
     }
 
     public function createRouteList()
     {
         $this->routeList = [];
         $this->routeList["index"] = new RouteIndex($this->ctrlList["main"]);
-        $this->routeList["add-pokemon"] = new RouteAddPokemon($this->ctrlList["add-pokemon"]);
+        $this->routeList["add-pokemon"] = new RouteAddPokemon($this->ctrlList["pokemon"]);
         $this->routeList["search"] = new RouteSearch($this->ctrlList["main"]);
-        $this->routeList["add-pokemon-type"] = new RouteAddType($this->ctrlList["add-pokemon"]);
+        $this->routeList["add-pokemon-type"] = new RouteAddType($this->ctrlList["pokemon"]);
     }
 
     public function routing($get, $post)
@@ -48,12 +48,15 @@ Class Router
                 case 'add-pokemon-type': $routeName = "add-pokemon-type";break;
             }
         }
-        else if($post != NULL)
+        if(isset($post))
         {
             $donnees = $post;
             $method = 'POST';
+            switch($action)
+            {
+                case 'add-pokemon': $routeName = "add-pokemon";break;
+            }
         }
-
 
         $route = $this->routeList[$routeName];
         $route->action($donnees, $method);

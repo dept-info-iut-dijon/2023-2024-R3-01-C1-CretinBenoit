@@ -5,12 +5,12 @@ h1{
 table{
     border : 3px solid yellow;
     border-collapse: collapse;
-    width: 70%;
+    width: 100%;
     background-color: lightblue;
 }
 
 img{
-    width: 100px;
+    width: 150px;
 }
 
 td{

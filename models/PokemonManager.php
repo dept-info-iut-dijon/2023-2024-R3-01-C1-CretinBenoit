@@ -44,9 +44,33 @@ class PokemonManager extends Model
                 $res = new Pokemon($pokemon);
             }
         }
-        return $res;
+        return $res;        
+    }
 
-        
+    /**
+     * Insère un Pokemon dans la BDD
+     * @param Pokemon le pokemon à insérer
+    */
+    public function createPokemon(Pokemon $pokemon): int
+    {
+        $nomEspece = $pokemon->getNomEspece();
+        $description = $pokemon->getDescription();
+        $type1 = $pokemon->getTypeOne();
+        $type2 = $pokemon->getTypeTwo();
+        $url = $pokemon->getUrlImg();
+
+        $sql = "Insert INTO pokemon (nomEspece, description, typeOne, typeTwo, urlImg) VALUES (:valeurNom, :valeurDesc, :valeurType1, :valeurType2, valeurUrl)";
+        $params = [
+            ':valeurNom' => $nomEspece,
+            ':valeurDesc' => $description,
+            ':valeurType1' => $type1,
+            ':valeurType2' => $type2,
+            ':valeurUrl' => $url,
+        ];
+
+        $this->execRequest($sql, $params);
+        $id = $this->execRequest("Select Last_Insert_ID()");
+        return $id;
     }
 }
 ?>

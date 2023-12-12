@@ -75,6 +75,7 @@ class Pokemon
      */
     public function __construct(array $donnes)
     {
+        $this->idPokemon = null;
         $this->hydrate($donnes);
     }
 
