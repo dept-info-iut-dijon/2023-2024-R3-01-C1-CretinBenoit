@@ -12,8 +12,6 @@ abstract class Model
 
     protected function execRequest(string $sql, array $params = null):PDOStatement|false
     {
-        var_dump($sql);
-        var_dump($params);
         $this->getDB();
         $requete = $this->db->prepare($sql);
         $requete->execute($params);

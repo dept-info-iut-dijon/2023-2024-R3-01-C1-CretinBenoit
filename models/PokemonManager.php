@@ -59,7 +59,7 @@ class PokemonManager extends Model
         $type2 = $pokemon->getTypeTwo();
         $url = $pokemon->getUrlImg();
 
-        $sql = "Insert INTO pokemon (nomEspece, description, typeOne, typeTwo, urlImg) VALUES (:valeurNom, :valeurDesc, :valeurType1, :valeurType2, valeurUrl)";
+        $sql = "Insert INTO pokemon (nomEspece, description, typeOne, typeTwo, urlImg) VALUES (:valeurNom, :valeurDesc, :valeurType1, :valeurType2, :valeurUrl)";
         $params = [
             ':valeurNom' => $nomEspece,
             ':valeurDesc' => $description,
@@ -69,8 +69,9 @@ class PokemonManager extends Model
         ];
 
         $this->execRequest($sql, $params);
-        $id = $this->execRequest("Select Last_Insert_ID()");
-        return $id;
+        $stmt = $this->execRequest("Select max(idPokemon) from pokemon");
+        $id = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $id["max(idPokemon)"];
     }
 }
 ?>

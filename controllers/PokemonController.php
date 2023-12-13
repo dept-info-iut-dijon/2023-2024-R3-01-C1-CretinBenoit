@@ -29,7 +29,8 @@ Class PokemonController
         else "Le pokemon n'a pas pu être ajouté";
 
         $addPokemon = new View('Index');
-        $addPokemon->generer(['message' => $message]);
+        $listPokemon = $PM->getAll();
+        $addPokemon->generer(['message' => $message, 'listPokemon' => $listPokemon]);
     }
 }
 ?>

@@ -48,11 +48,11 @@ Class Router
                 case 'add-pokemon-type': $routeName = "add-pokemon-type";break;
             }
         }
-        if(isset($post))
+        if(!empty($post))
         {
             $donnees = $post;
             $method = 'POST';
-            switch($action)
+            switch($post)
             {
                 case 'add-pokemon': $routeName = "add-pokemon";break;
             }
