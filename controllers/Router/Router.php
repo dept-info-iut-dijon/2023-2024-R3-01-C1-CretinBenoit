@@ -5,6 +5,8 @@ require_once("controllers/PokemonController.php");
 require_once("controllers/Router/Route/RouteAddPokemon.php");
 require_once("controllers/Router/Route/RouteSearch.php");
 require_once("controllers/Router/Route/RouteAddType.php");
+require_once("controllers/Router/Route/RouteDelPokemon.php");
+require_once("controllers/Router/Route/RouteEditPokemon.php");
 Class Router
 {
     private array $routeList;
@@ -31,6 +33,8 @@ Class Router
         $this->routeList["add-pokemon"] = new RouteAddPokemon($this->ctrlList["pokemon"]);
         $this->routeList["search"] = new RouteSearch($this->ctrlList["main"]);
         $this->routeList["add-pokemon-type"] = new RouteAddType($this->ctrlList["pokemon"]);
+        $this->routeList["del-pokemon"] = new RouteDelPokemon($this->ctrlList["pokemon"]);
+        $this->routeList["edit-pokemon"] = new RouteEditPokemon($this->ctrlList["pokemon"]);
     }
 
     public function routing($get, $post)
@@ -46,6 +50,8 @@ Class Router
                 case 'add-pokemon': $routeName = "add-pokemon";break;
                 case 'search': $routeName = "search";break;
                 case 'add-pokemon-type': $routeName = "add-pokemon-type";break;
+                case 'del-pokemon': $routeName = "del-pokemon";break;
+                case 'edit-pokemon': $routeName = "edit-pokemon";break;
             }
         }
         if(!empty($post))

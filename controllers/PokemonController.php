@@ -32,5 +32,28 @@ Class PokemonController
         $listPokemon = $PM->getAll();
         $addPokemon->generer(['message' => $message, 'listPokemon' => $listPokemon]);
     }
+
+    public function deletePokemon(int $idPokemon = -1)
+    {
+        $PM = new PokemonManager();
+        if($idPokemon != -1)
+        {
+            $PM->deletePokemon($idPokemon);
+            $delPokemon = new View('Index');
+            $listPokemon = $PM->getAll();
+            $delPokemon->generer(['listPokemon' => $listPokemon]);
+        }
+    }
+
+    public function displayEditPokemon(int $idPokemon = -1)
+    {
+        $PM = new PokemonManager();
+        $editPokemonView = new View('EditPokemon');
+        $pokemon = $PM->getById($idPokemon);
+
+        var_dump($idPokemon);
+        var_dump($pokemon);
+        $editPokemonView->generer(['pokemon' => $pokemon]);
+    }
 }
 ?>

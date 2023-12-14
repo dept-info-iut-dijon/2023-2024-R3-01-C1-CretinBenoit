@@ -1,5 +1,7 @@
 <h1>Pokedex</h1>
 <?php 
+
+    if(isset($message))echo $message;
     echo '<table><tr><td>ID</td><td>Pokemon</td><td>Description</td><td>Types</td><td>Image</td><td>Options</td><tr>';
     foreach($listPokemon as $value)
     {

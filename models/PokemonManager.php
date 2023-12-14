@@ -53,6 +53,18 @@ class PokemonManager extends Model
     */
     public function createPokemon(Pokemon $pokemon): int
     {
+
+        //Réajustement de l'idPokemon (auto increment) à la plus faible valeur disponible
+
+        $sql = "SELECT MAX(idPokemon) into @max_id from pokemon;
+        SET @next_id = IFNULL(@max_id, 0) +1;
+        SET @query = CONCAT('ALTER TABLE pokemon AUTO_INCREMENT = ', @next_id);
+        PREPARE stmt FROM @query;
+        EXECUTE stmt;
+        DEALLOCATE PREPARE stmt;";
+        $this->execRequest($sql);
+
+
         $nomEspece = $pokemon->getNomEspece();
         $description = $pokemon->getDescription();
         $type1 = $pokemon->getTypeOne();
@@ -72,6 +84,18 @@ class PokemonManager extends Model
         $stmt = $this->execRequest("Select max(idPokemon) from pokemon");
         $id = $stmt->fetch(PDO::FETCH_ASSOC);
         return $id["max(idPokemon)"];
+    }
+
+
+    /**
+     * Supprime le pokemon correspondant à l'id donné
+     * @param int id du pokemon à supprimer
+     */
+    public function deletePokemon(int $id = -1):void
+    {
+        $sql = 'delete from pokemon where idPokemon = :valeurId';
+        $params = [':valeurId' => $id];
+        $this->execRequest($sql, $params);
     }
 }
 ?>
